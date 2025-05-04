@@ -151,17 +151,38 @@
   }
 
   function updateRow(btn) {
-    const row = btn.parentNode.parentNode;
-    const cells = row.querySelectorAll("td");
+  const row = btn.parentNode.parentNode;
+  const cells = row.querySelectorAll("td");
 
-    const cashIn = parseFloat(cells[2].textContent) || 0;
-    const cashOut = parseFloat(cells[3].textContent) || 0;
-    const agentCom = parseFloat(cells[5].textContent) || 0;
-    const loader = parseFloat(cells[6].textContent) || 0;
-    const otherExp = parseFloat(cells[7].textContent) || 0;
-    const chipsIn = parseFloat(cells[9].textContent) || 0;
-    const chipsOut = parseFloat(cells[10].textContent) || 0;
+  if (btn.textContent === "Update") {
+    // Enable editing
+    const editableIndexes = [0,1,2,3,5,6,7,9,10];
+    editableIndexes.forEach(i => {
+      const value = cells[i].textContent;
+      cells[i].innerHTML = `<input type="text" value="${value}" style="width: 80px;">`;
+    });
+    btn.textContent = "Save";
+  } else {
+    // Save edits
+    const newValues = [];
+    const editableIndexes = [0,1,2,3,5,6,7,9,10];
+    editableIndexes.forEach(i => {
+      const input = cells[i].querySelector("input");
+      const value = input.value;
+      cells[i].textContent = value;
+      newValues[i] = value;
+    });
 
+    // Parse numbers
+    const cashIn = parseFloat(newValues[2]) || 0;
+    const cashOut = parseFloat(newValues[3]) || 0;
+    const agentCom = parseFloat(newValues[5]) || 0;
+    const loader = parseFloat(newValues[6]) || 0;
+    const otherExp = parseFloat(newValues[7]) || 0;
+    const chipsIn = parseFloat(newValues[9]) || 0;
+    const chipsOut = parseFloat(newValues[10]) || 0;
+
+    // Recalculate
     const netLoss = cashIn - cashOut;
     const netHouse = netLoss - agentCom - loader - otherExp;
     const netChips = chipsIn - chipsOut;
@@ -170,7 +191,9 @@
     cells[8].textContent = netHouse;
     cells[11].textContent = netChips;
 
-    alert("✅ Row updated");
+    btn.textContent = "Update";
+    alert("✅ Data saved and updated.");
+  }
   }
 </script>
 
