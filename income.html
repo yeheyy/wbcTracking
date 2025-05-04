@@ -5,35 +5,61 @@
   <title>wbcTracking - Income Tracker</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .button-row {
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    nav ul {
       display: flex;
-      gap: 20px;
+      list-style: none;
+      background: #007bff;
+      padding: 0;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    nav a.active {
+      background-color: #0056b3;
+    }
+
+    main {
+      padding: 20px;
+      background: #f7f7f7;
+      min-height: 100vh;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 20px;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      font-weight: bold;
-      border: 2px solid transparent;
       background-color: white;
-      cursor: pointer;
-      transition: 0.3s;
     }
 
-    .btn.add { border-color: purple; color: purple; }
-    .btn.update { border-color: limegreen; color: limegreen; }
-    .btn.delete { border-color: red; color: red; }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
 
-    .btn:hover {
-      background-color: #f0f0f0;
+    th {
+      background-color: #007bff;
+      color: white;
     }
 
     form {
-      margin-top: 30px;
-      background: #fafafa;
+      margin-top: 20px;
+      background: #fff;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     form input, form select {
@@ -44,6 +70,19 @@
     form label {
       font-weight: bold;
       margin-right: 10px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background: #0056b3;
     }
   </style>
 </head>
@@ -94,35 +133,83 @@
       </tbody>
     </table>
 
-    <div class="button-row">
-      <button class="btn add" onclick="addEntry()">➕ Add</button>
-      <button class="btn update" onclick="updateEntry()">📝 Update</button>
-      <button class="btn delete" onclick="deleteLastRow()">❌ Delete</button>
-    </div>
-
     <form id="entryForm">
-      <h3>➕ Add or Edit Entry</h3>
+      <h3>Manual Entry</h3>
       <label>Date: <input type="date" id="date" required></label>
-      <label>Shift: 
+      <label>Shift:
         <select id="shift">
           <option>12PM TO 8PM</option>
           <option>8PM TO 4AM</option>
           <option>4AM TO 12PM</option>
         </select>
-      </label>
+      </label><br>
       <label>Cash In: <input type="number" id="cashIn" required></label>
       <label>Cash Out: <input type="number" id="cashOut" required></label><br>
       <label>Agent Commission: <input type="number" id="agentComms" required></label>
       <label>Loader Salary: <input type="number" id="loaderSalary" required></label>
       <label>Other Expenses: <input type="number" id="otherExpenses" required></label><br>
       <label>Chips In: <input type="number" id="chipsIn" required></label>
-      <label>Chips Out: <input type="number" id="chipsOut" required></label>
+      <label>Chips Out: <input type="number" id="chipsOut" required></label><br><br>
+
+      <label>Action:
+        <select id="actionSelect">
+          <option value="add">Add</option>
+          <option value="update">Update</option>
+          <option value="delete">Delete</option>
+        </select>
+      </label>
+
+      <button type="button" class="submit-btn" onclick="handleAction()">Submit</button>
     </form>
   </main>
 
   <script>
+    function handleAction() {
+      const action = document.getElementById("actionSelect").value;
+      if (action === "add") addEntry();
+      else if (action === "update") alert("🛠️ Update function is not yet implemented.");
+      else if (action === "delete") deleteLastRow();
+    }
+
     function addEntry() {
       const date = document.getElementById("date").value;
       const shift = document.getElementById("shift").value;
       const cashIn = +document.getElementById("cashIn").value;
-      const cashOut = +document.getElement
+      const cashOut = +document.getElementById("cashOut").value;
+      const agentComms = +document.getElementById("agentComms").value;
+      const loaderSalary = +document.getElementById("loaderSalary").value;
+      const otherExpenses = +document.getElementById("otherExpenses").value;
+      const chipsIn = +document.getElementById("chipsIn").value;
+      const chipsOut = +document.getElementById("chipsOut").value;
+
+      const netLoss = cashIn - cashOut;
+      const netHouse = netLoss - agentComms - loaderSalary - otherExpenses;
+      const netChips = chipsIn - chipsOut;
+
+      const table = document.getElementById("income-table").getElementsByTagName("tbody")[0];
+      const newRow = table.insertRow();
+
+      const values = [
+        date, shift, cashIn, cashOut, netLoss, agentComms,
+        loaderSalary, otherExpenses, netHouse, chipsIn, chipsOut, netChips
+      ];
+
+      for (let val of values) {
+        const cell = newRow.insertCell();
+        cell.textContent = val;
+      }
+
+      alert("✅ Entry added.");
+      document.getElementById("entryForm").reset();
+    }
+
+    function deleteLastRow() {
+      const table = document.getElementById("income-table").getElementsByTagName("tbody")[0];
+      if (table.rows.length > 0) {
+        table.deleteRow(table.rows.length - 1);
+        alert("🗑️ Last entry deleted.");
+      }
+    }
+  </script>
+</body>
+</html>
