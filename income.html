@@ -99,39 +99,50 @@
     <h1>💰 Income Tracker</h1>
 
     <table id="income-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Shift</th>
-          <th>Cash In</th>
-          <th>Cash Out</th>
-          <th>Net Loss</th>
-          <th>Agent Commission</th>
-          <th>Loader Salary</th>
-          <th>Other Expenses</th>
-          <th>Net House Income</th>
-          <th>Chips In</th>
-          <th>Chips Out</th>
-          <th>Net Chips</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>4/28/2025</td>
-          <td>12PM TO 8PM</td>
-          <td>100000</td>
-          <td>63000</td>
-          <td>37000</td>
-          <td>13125</td>
-          <td>3000</td>
-          <td>3260</td>
-          <td>17615</td>
-          <td>88910</td>
-          <td>91356</td>
-          <td>-2446</td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- Replace only the <table> and <form> sections with this updated one -->
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Shift</th>
+      <th>Cash In</th>
+      <th>Cash Out</th>
+      <th>Net Loss</th>
+      <th>Agent Commission</th>
+      <th>Loader Salary</th>
+      <th>Other Expenses</th>
+      <th>Net House Income</th>
+      <th>Chips In</th>
+      <th>Chips Out</th>
+      <th>Net Chips</th>
+      <th>Action</th> <!-- New column -->
+    </tr>
+  </thead>
+  <tbody id="table-body">
+    <tr>
+      <td contenteditable="true">2025-04-28</td>
+      <td contenteditable="true">12PM TO 8PM</td>
+      <td contenteditable="true">100000</td>
+      <td contenteditable="true">63000</td>
+      <td>37000</td>
+      <td contenteditable="true">13125</td>
+      <td contenteditable="true">3000</td>
+      <td contenteditable="true">3260</td>
+      <td>17615</td>
+      <td contenteditable="true">88910</td>
+      <td contenteditable="true">91356</td>
+      <td>-2446</td>
+      <td>
+        <select onchange="handleRowAction(this)">
+          <option value="">--Select--</option>
+          <option value="add">Add</option>
+          <option value="update">Update</option>
+          <option value="delete">Delete</option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 
     <form id="entryForm">
       <h3>Manual Entry</h3>
