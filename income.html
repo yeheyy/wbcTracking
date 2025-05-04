@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>wbcTracking - Income Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Income Tracker - WBCTracking</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>💰 wbcTracking: Income Tracker</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Shift</th>
-          <th>Cash In</th>
-          <th>Cash Out</th>
-          <th>Net Loss</th>
-          <th>Agent Commission</th>
-          <th>Loader Salary</th>
-          <th>Other Expenses</th>
-          <th>Net House</th>
-          <th>Chips In</th>
-          <th>Chips Out</th>
-          <th>Net Chips</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="table-body">
-        <!-- Rows will be inserted here -->
-      </tbody>
-    </table>
+    <h1>WBCTracking - Income Tracker</h1>
+    <div class="table-wrapper">
+      <table id="income-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Shift</th>
+            <th>Cash In</th>
+            <th>Cash Out</th>
+            <th>Net Loss</th>
+            <th>Agent Commission</th>
+            <th>Loader Salary</th>
+            <th>Other Expenses</th>
+            <th>Net House</th>
+            <th>Chips In</th>
+            <th>Chips Out</th>
+            <th>Net Chips</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
   </div>
 
   <script src="script.js"></script>
