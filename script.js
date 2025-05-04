@@ -108,12 +108,22 @@ function updateRow(btn) {
 }
 
 function deleteRow(btn) {
+  const row = btn.closest("tr");
+  const table = document.getElementById("table-body");
+
+  // Check if it's the only row left
+  if (table.rows.length === 1) {
+    alert("⚠️ You cannot delete the last remaining row.");
+    return;
+  }
+
+  // Confirm delete
   if (confirm("⚠️ Are you sure you want to delete this row?")) {
-    const row = btn.closest("tr");
     row.remove();
     updateAddButton();
   }
 }
+
 
 function updateAddButton() {
   const rows = document.querySelectorAll("#table-body tr");
