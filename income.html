@@ -175,52 +175,44 @@
   </main>
 
   <script>
-    function handleAction() {
-      const action = document.getElementById("actionSelect").value;
-      if (action === "add") addEntry();
-      else if (action === "update") alert("🛠️ Update function is not yet implemented.");
-      else if (action === "delete") deleteLastRow();
-    }
+  function handleRowAction(select) {
+    const action = select.value;
+    const row = select.closest("tr");
+    const cells = row.querySelectorAll("td");
 
-    function addEntry() {
-      const date = document.getElementById("date").value;
-      const shift = document.getElementById("shift").value;
-      const cashIn = +document.getElementById("cashIn").value;
-      const cashOut = +document.getElementById("cashOut").value;
-      const agentComms = +document.getElementById("agentComms").value;
-      const loaderSalary = +document.getElementById("loaderSalary").value;
-      const otherExpenses = +document.getElementById("otherExpenses").value;
-      const chipsIn = +document.getElementById("chipsIn").value;
-      const chipsOut = +document.getElementById("chipsOut").value;
+    if (action === "delete") {
+      row.remove();
+      alert("🗑️ Row deleted.");
+    } else if (action === "add") {
+      const clone = row.cloneNode(true);
+      clone.querySelector("select").value = "";
+      document.getElementById("table-body").appendChild(clone);
+      alert("✅ Row added.");
+    } else if (action === "update") {
+      // Auto-calculate values
+      const cashIn = parseFloat(cells[2].textContent) || 0;
+      const cashOut = parseFloat(cells[3].textContent) || 0;
+      const agentCom = parseFloat(cells[5].textContent) || 0;
+      const loader = parseFloat(cells[6].textContent) || 0;
+      const otherExp = parseFloat(cells[7].textContent) || 0;
+      const chipsIn = parseFloat(cells[9].textContent) || 0;
+      const chipsOut = parseFloat(cells[10].textContent) || 0;
 
       const netLoss = cashIn - cashOut;
-      const netHouse = netLoss - agentComms - loaderSalary - otherExpenses;
+      const netHouse = netLoss - agentCom - loader - otherExp;
       const netChips = chipsIn - chipsOut;
 
-      const table = document.getElementById("income-table").getElementsByTagName("tbody")[0];
-      const newRow = table.insertRow();
+      cells[4].textContent = netLoss;
+      cells[8].textContent = netHouse;
+      cells[11].textContent = netChips;
 
-      const values = [
-        date, shift, cashIn, cashOut, netLoss, agentComms,
-        loaderSalary, otherExpenses, netHouse, chipsIn, chipsOut, netChips
-      ];
-
-      for (let val of values) {
-        const cell = newRow.insertCell();
-        cell.textContent = val;
-      }
-
-      alert("✅ Entry added.");
-      document.getElementById("entryForm").reset();
+      alert("📝 Row updated with new values.");
     }
 
-    function deleteLastRow() {
-      const table = document.getElementById("income-table").getElementsByTagName("tbody")[0];
-      if (table.rows.length > 0) {
-        table.deleteRow(table.rows.length - 1);
-        alert("🗑️ Last entry deleted.");
-      }
-    }
-  </script>
+    // Reset dropdown
+    select.value = "";
+  }
+</script>
+
 </body>
 </html>
