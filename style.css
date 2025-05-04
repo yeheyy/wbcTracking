@@ -2,6 +2,13 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
   background: #f3f3f3;
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 table {
@@ -9,12 +16,14 @@ table {
   border-collapse: collapse;
   margin-bottom: 2rem;
   background: #fff;
+  overflow-x: auto;
 }
 
 th, td {
-  padding: 8px 10px;
+  padding: 10px 8px;
   border: 1px solid #ccc;
   text-align: center;
+  font-size: 0.9rem;
 }
 
 th {
@@ -28,6 +37,7 @@ th {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 0.85rem;
 }
 
 .update-btn { background: #4CAF50; color: white; }
@@ -35,5 +45,31 @@ th {
 .add-btn    { background: #9b59b6; color: white; }
 
 input[type="number"], input[type="text"], input[type="date"] {
-  width: 100px;
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  font-size: 0.85rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th, td {
+    font-size: 0.75rem;
+    padding: 6px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .action-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
 }
