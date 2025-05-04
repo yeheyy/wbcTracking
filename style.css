@@ -1,63 +1,39 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-nav {
-  background-color: #007bff;
-  padding: 10px;
-}
-
-nav ul {
-  list-style-type: none;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 6px 12px;
-  border-radius: 4px;
-}
-
-nav a.active, nav a:hover {
-  background-color: #0056b3;
-}
-
-main {
-  max-width: 1000px;
-  margin: 40px auto;
   padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-h1 {
-  text-align: center;
-  color: #333;
+  background: #f3f3f3;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 25px;
+  margin-bottom: 2rem;
+  background: #fff;
 }
 
 th, td {
+  padding: 8px 10px;
   border: 1px solid #ccc;
-  padding: 10px;
   text-align: center;
 }
 
 th {
-  background-color: #007bff;
-  color: white;
+  background: #333;
+  color: #fff;
+}
+
+.action-btn {
+  padding: 6px 10px;
+  margin: 2px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.update-btn { background: #4CAF50; color: white; }
+.delete-btn { background: #f44336; color: white; }
+.add-btn    { background: #9b59b6; color: white; }
+
+input[type="number"], input[type="text"], input[type="date"] {
+  width: 100px;
 }
