@@ -1,57 +1,92 @@
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #f3f3f3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
+  background-color: #f8f9fa;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
 }
 
 h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 2rem;
-  background: #fff;
-  overflow-x: auto;
-}
-
-th, td {
-  padding: 10px 8px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-size: 0.9rem;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 th {
-  background: #333;
-  color: #fff;
+  background-color: #34495e;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .action-btn {
   padding: 6px 10px;
   margin: 2px;
   border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
-.update-btn { background: #4CAF50; color: white; }
-.delete-btn { background: #f44336; color: white; }
-.add-btn    { background: #9b59b6; color: white; }
-
-input[type="number"], input[type="text"], input[type="date"] {
-  width: 100%;
-  padding: 4px;
-  box-sizing: border-box;
-  font-size: 0.85rem;
+.update-btn {
+  background-color: #27ae60;
+  color: white;
 }
 
-/* Mobile Responsive */
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.add-btn {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.action-btn:hover {
+  opacity: 0.85;
+}
+
 @media (max-width: 768px) {
   table {
     display: block;
@@ -59,17 +94,17 @@ input[type="number"], input[type="text"], input[type="date"] {
     white-space: nowrap;
   }
 
-  th, td {
-    font-size: 0.75rem;
-    padding: 6px;
+  h1 {
+    font-size: 1.4rem;
   }
 
-  h1 {
-    font-size: 1.2rem;
+  td, th {
+    font-size: 0.75rem;
+    padding: 8px;
   }
 
   .action-btn {
+    font-size: 0.7rem;
     padding: 4px 8px;
-    font-size: 0.75rem;
   }
 }
